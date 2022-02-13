@@ -134,5 +134,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 django_heroku.settings(locals())
 
 # Parse database configuration from $DATABASE_URL
-if ENV_ROLE == 'production':
-    DATABASES['default'] =  dj_database_url.config()
+# if ENV_ROLE == 'production':
+DATABASES['default'] =  dj_database_url.config()
