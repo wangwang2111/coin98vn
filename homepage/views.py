@@ -197,7 +197,7 @@ def read_news(request, headlines):
     # Popular
     popular_news = News.objects.all().order_by('-views')[:4]
     # Tags
-    tags = Tag.objects.annotate(news_count=Count('newsTag')).order_by('-news_count')[:10]
+    tags = Tag.objects.annotate(news_count=Count('newsTag')).order_by('-news_count')[:11]
     news.views += 1
     news.save()
     return render(request, 'homepage/newsdetails.html', {
