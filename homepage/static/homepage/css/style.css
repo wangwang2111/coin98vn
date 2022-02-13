@@ -11936,3 +11936,51 @@ ul.mvp-author-info-list {
     padding-left: 0;
   }
 }
+
+.loader {
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  display: flex;
+  height: 60px;
+  min-height: 25px;
+  transform-origin: bottom center;
+  animation: rotate_loading 1s linear infinite;
+  position: absolute;
+  top: 43%;
+  left: 50%;
+}
+
+.circle {
+  display: inline-block;
+  background-color: #FF2C54;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: grow_loading 1.2s linear infinite;
+  margin: -10px;
+}
+
+.circle:nth-child(2) {
+  background-color: #FF9500;
+  animation-delay: 0.75s;
+}
+
+@keyframes rotate_loading {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes grow_loading {
+  50% {
+    transform: scale(1);
+  }
+}
+
+.container-scroller {
+  opacity: 0;
+  display: none;
+  transition: opacity 0.5s ease-in;
+}

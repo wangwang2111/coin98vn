@@ -43,7 +43,7 @@ class News(models.Model):
     main_category = models.ForeignKey(Category, on_delete=models.CASCADE, default='Crypto', related_name="category_news")
     add_time = models.DateTimeField()
     tag = models.ManyToManyField(Tag, blank=True, related_name="newsTag")
-    views = models.PositiveIntegerField(default=randint(49,68))
+    views = models.PositiveIntegerField(default=randint(0,50))
     cmt_count = models.PositiveIntegerField(default=randint(0,5))
 
     class Meta:
