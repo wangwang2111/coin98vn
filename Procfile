@@ -1,1 +1,1 @@
-web: gunicorn coinvn.wsgi
+web: gunicorn coinvn_wsgi.py
