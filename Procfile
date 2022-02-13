@@ -1,1 +1,1 @@
-web: gunicorn coinvn.wsgi
+web: python manage.py collectstatic --noinput; gunicorn coinvn.wsgi
