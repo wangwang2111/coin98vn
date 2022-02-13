@@ -7,13 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import *
 from datetime import date, datetime
-import requests, json
-
-
-class NewTaskForm(forms.Form):
-    task = forms.CharField(label="New Task")
-    priority = forms.IntegerField(label="Priority", min_value=1, max_value=5)
-
+import requests
 
 def get_by_headlines(hl):
     try:
