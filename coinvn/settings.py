@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-)9*sjzl+_8l+9cjq!q-him$t)09e(n59r90h9mqthw8t4d!u86
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -132,3 +132,7 @@ MEDIA_URL = 'images/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals())
+
+# Parse database configuration from $DATABASE_URL
+if ENV_ROLE == 'production':
+    DATABASES['default'] =  dj_database_url.config()
