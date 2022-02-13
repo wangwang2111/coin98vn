@@ -10395,6 +10395,10 @@ button.bg-dark:focus {
   font-weight: 400 !important;
 }
 
+.font-weight-normal {
+  font-weight: 500;
+}
+
 .font-weight-bold {
   font-weight: 700 !important;
 }
@@ -11222,12 +11226,6 @@ h6, .h6 {
   padding-left: 50px;
 }
 
-@media (max-width: 767px) {
-  .navbar-bottom-menu .navbar-nav .nav-item:last-child {
-    display: none;
-  }
-}
-
 @media (max-width: 999px) {
   .navbar-bottom-menu .navbar-toggler {
     position: absolute;
@@ -11456,10 +11454,6 @@ h6, .h6 {
 .world-news,
 .popular-news {
   padding: 37px 0;
-}
-
-.font-weight-600 {
-  font-weight: 600;
 }
 
 .section-title {

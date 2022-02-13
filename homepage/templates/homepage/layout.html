@@ -50,7 +50,7 @@
                     </a>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="https://www.facebook.com/dangquang211102/">
                       <i class="mdi mdi-facebook"></i>
                     </a>
                   </li>
@@ -123,29 +123,29 @@
             </div>
             <div class="col-sm-3 col-lg-3">
               <ul class="footer-vertical-nav">
-                <li class="menu-title"><a href="pages/news-post.html" class="text-dark">Tin Tức</a></li>
-                <li><a href="index.html" class="text-dark">Trang Chủ</a></li>
-                <li><a href="pages/world.html" class="text-dark">Binance</a></li>
+                <li class="menu-title"><a href="{% url 'homepage:index' %}" class="text-dark">Trang Chủ</a></li>
+                <li><a href="{% url 'homepage:tag_news' 'GAFI' %}" class="text-dark">GAFI</a></li>
+                <li><a href="{% url 'homepage:tag_news' 'binance' %}" class="text-dark">Binance</a></li>
               </ul>
             </div>
             <div class="col-sm-3 col-lg-3">
               <ul class="footer-vertical-nav">
-                <li class="menu-title"><a href="pages/world.html" class="text-dark">Game Defi</a></li>
-                <li><a href="pages/sports.html" class="text-dark">Sàn Bybit</a></li>
-                <li><a href="pages/art.html" class="text-dark">Kiến Thức</a></li>
+                <li class="menu-title"><a href="{% url 'homepage:tag_news' tagtitle='gamefi' %}" class="text-dark">Game Defi</a></li>
+                <li><a href="{% url 'homepage:tag_news' 'bybit' %}" class="text-dark">Sàn Bybit</a></li>
+                <li><a href="{% url 'homepage:category' 'Kiến Thức' %}" class="text-dark">Kiến Thức</a></li>
               </ul>
             </div>
             <div class="col-sm-3 col-lg-3">
               <ul class="footer-vertical-nav">
-                <li class="menu-title"><a href="#" class="text-dark">Crypto</a></li>
-                <li><a href="#" class="text-dark">Love Token</a></li>
-                <li><a href="#" class="text-dark">Quy tắc quan trọng</a></li>
+                <li class="menu-title"><a href="{% url 'homepage:category' 'Crypto' %}" class="text-dark">Crypto</a></li>
+                <li><a href="{% url 'homepage:tag_news' 'love token' %}" class="text-dark">Love Token</a></li>
+                <li><a href="{% url 'homepage:tag_news' 'là gì' %}" class="text-dark">Định nghĩa</a></li>
               </ul>
             </div>
             <div class="col-sm-3 col-lg-3">
               <ul class="footer-vertical-nav">
-                <li class="menu-title"><a href="#" class="text-dark">Hướng Dẫn</a></li>
-                <li><a href="#" class="text-dark">Về Chúng Tôi</a></li>
+                <li class="menu-title"><a href="{% url 'homepage:category' 'Hướng Dẫn' %}" class="text-dark">Hướng Dẫn</a></li>
+                <li><a href="{% url 'homepage:aboutus' %}" class="text-dark">Về Chúng Tôi</a></li>
                 <li><a href="#" class="text-dark">Liên Hệ</a></li>
               </ul>
             </div>
