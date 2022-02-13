@@ -52,23 +52,6 @@ current_date = date.today().strftime("%a, %B %d, %Y")
 now = datetime.now()
 
 
-def comment(request):
-    if request.method == "POST":
-        form = NewTaskForm(request.POST)
-        if form.is_valid():
-            task = form.cleaned_data["task"]
-            request.session["tasks"] += [task]
-            return HttpResponseRedirect(reverse("tasks:index"))
-        else:
-            return render(request, "tasks/add.html", {
-                "form": form
-            })
-    else:
-        return render(request, "tasks/add.html", {
-            "form": NewTaskForm()
-        })
-
-
 def index(request):
     # banner
     four_news = News.objects.all().order_by('-add_time')[0:4]
@@ -239,9 +222,6 @@ def search(request):
     for entry in News.objects.all():
         if r.upper() in entry.headlines.upper() or r.upper() in entry.title.upper() or r.upper() in entry.main_category.title.upper() or r.upper() in entry.author.name.upper():
             subStringEntries.append(entry)
-    # for tag in Tag.objects.all():
-    #     if r.upper() in tag.title.upper():
-    #         subStringEntries += tag.newsTag.all()
 
     if get_by_headlines(r) is not None:
         return HttpResponseRedirect("read/" + r)
