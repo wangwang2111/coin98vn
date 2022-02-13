@@ -1,0 +1,97 @@
+{% extends 'homepage/layout.html' %}
+{% block title %}{{ category.title }}{% endblock %}
+{% block body %}
+{% load static %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="text-center">
+          <h1 class="text-center mt-5">
+            {{ category.title }}
+          </h1>
+          <p class="text-secondary fs-15">
+            {{ category.script }}
+          </p>
+        </div>
+        <h5 class="text-muted font-weight-medium mb-3">{{ category.title }} News</h5>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7 mb-5 mb-sm-2">
+          <div class="position-relative image-hover">
+            <a href="{% url 'homepage:read_news' headlines=primary_choice.headlines %}">
+              <img src="{% static 'homepage/images' %}/{{ primary_choice.image }}" class="img-fluid" alt="world-news"/>
+            </a>
+            <span class="thumb-title">{{ primary_choice.main_category|upper }}</span>
+          </div>
+          <a href="{% url 'homepage:read_news' headlines=primary_choice.headlines %}"><h1 class="font-weight-600 mt-3">
+            {{ primary_choice.title }}
+          </h1></a>
+          <p class="fs-15 font-weight-normal">
+            {{ primary_choice.subtitle }}
+          </p>
+        </div>
+      <div class="col-lg-5 mb-5 mb-sm-2">
+        <div class="row">
+          {% for news in firttwos %}
+          <div class="col-lg-6 mb-5 mb-sm-2">
+            <div class="position-relative image-hover">
+              <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+                <img src="{% static 'homepage/images' %}/{{ news.image }}" class="img-fluid" alt="world-news"/>
+              </a>
+              <span class="thumb-title">{{ news.main_category|upper }}</span>
+            </div>
+            <a href="{% url 'homepage:read_news' headlines=news.headlines %}"><h5 class="font-weight-600 mt-3">
+              {{ news.title|truncatechars:46 }}
+            </h5></a>
+            <p class="fs-15 font-weight-normal">
+              {{ news.subtitle }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row mt-3">
+          {% for news in nexttwos %}
+          <div class="col-lg-6 mb-5 mb-sm-2">
+            <div class="position-relative image-hover">
+              <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+                <img src="{% static 'homepage/images' %}/{{ news.image }}" class="img-fluid" alt="world-news"/>
+              </a>
+              <span class="thumb-title">{{ news.main_category|upper }}</span>
+            </div>
+            <a href="{% url 'homepage:read_news' headlines=news.headlines %}"><h5 class="font-weight-600 mt-3">
+              {{ news.title|truncatechars:46 }}
+            </h5></a>
+            <p class="fs-15 font-weight-normal">
+              {{ news.subtitle }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-sm-12">
+        <h5 class="text-muted font-weight-medium mb-3">Next News</h5>
+      </div>
+    </div>
+    {% for row in next_news %}
+    <div class="row mb-4">
+      {% for news in row %}
+        <div class="col-sm-3 mb-5 mb-sm-2">
+          <div class="position-relative image-hover">
+            <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+              <img src="{% static 'homepage/images' %}/{{ news.image_square }}" class="img-fluid" alt="world-news"/>
+            </a>
+            <span class="thumb-title">{{ news.main_category|upper }}</span>
+          </div>
+          <a href="{% url 'homepage:read_news' headlines=news.headlines %}"><h5 class="font-weight-600 mt-3">
+            {{ news.title }}
+          </h5></a>
+        </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+
+{% endblock %}

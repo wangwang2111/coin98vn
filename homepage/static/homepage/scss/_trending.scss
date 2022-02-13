@@ -1,0 +1,53 @@
+// trending-tittle
+.trending-tittle{
+    padding-top: 31px;
+    padding-bottom: 33px;
+    display: flex;
+    //align-items: center;
+    @media #{$sm}{
+        padding-top: 25px;
+        padding-bottom: 1px;
+        display: block;
+    }
+    @media #{$xs}{
+        padding-top: 25px;
+        padding-bottom: 1px;
+        display: block;
+    }
+    .trending-animated {
+        padding-top: 4px;
+    }
+    strong{
+        color:#fff;
+        text-transform: uppercase;
+        font-size: 14px;
+        font-weight: 500;
+        background:#ff0b0b;
+        padding: 11px 0px;
+        line-height: 1;
+        margin-bottom: 15px;
+        border-radius: 5px;
+        display: inline-block;
+        min-width: 146px;
+        text-align: center;
+    }
+    p{
+        //padding-left: 20px;
+        margin: 0;
+        display: inline-block;
+        @media #{$xs}{
+            display: none;
+            left: 0 !important;
+        }
+        @media #{$sm}{
+            left: 0 !important;
+        }
+    }
+
+    // 
+    .ticker {
+        @media #{$xs}{
+            width: 230px;
+        }
+    }
+}

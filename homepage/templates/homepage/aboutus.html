@@ -1,0 +1,48 @@
+{% extends 'homepage/layout.html' %}
+{% block title %}Trang Chủ{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="text-center">
+        <h1 class="text-center mt-5">
+          Về Chúng Tôi
+        </h1>
+        <p class="text-secondary fs-15 mb-5 pb-3">
+          Một trang tóm tắt đơn giản ngắn gọn mọi thứ về chúng tôi
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="contact-wrap">
+    <div class="row">
+      <div class="col-lg-6  mb-5 mb-sm-2">
+        <div class="position-relative image-hover">
+          <img src="{% static 'homepage/images/logofull.png' %}" class="img-fluid" alt="world-news" />
+        </div>
+      </div>
+      <div class="col-lg-6 mb-2 mb-lg-2">
+        <div class="row">
+          <div class="col-sm-12  mb-2 mb-lg-2">
+            <h1>NHIỆM VỤ CHÚNG TÔI</h1>
+            <p class="mb-3">Tại Sao Chọn Chúng Tôi?</p>
+            <p class="mb-4">
+              Coin98 VN là trang chia sẻ tin tức kiến thức, đầu tư hàng đầu việt nam về tiền ảo, tiền đIện tử,
+              cryptocurrency. Đến với Coin98 VN bạn có thể học tập, nghiên cứu cũng như nâng cao kỹ năng đầu tư tiền
+              điện tử cũng như học nhiều cách kiếm tiền trên mạng.
+            </p>
+            <p class="mb-4">
+              Coin98 VN is Vietnam's leading investment and knowledge sharing site about virtual currencies, cryptocurrencies,
+               cryptocurrency. Coming to Coin98 VN you can study, research as well as improve money investment skills
+               electronics as well as learn many ways to make money online. (make money online)
+            </p>
+            <p class="fs-15 font-weight-600">
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

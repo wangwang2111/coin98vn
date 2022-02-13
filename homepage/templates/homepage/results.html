@@ -1,0 +1,63 @@
+{% extends 'homepage/layout.html' %}
+{% block title %}Search Results{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-success" style="margin-top: 20px;" role="alert">
+                {{ message }}
+            </div>
+            <div class="news-post-wrapper">
+                <div class="news-post-wrapper-sm ">
+                    <a href="{% url 'homepage:read_news' headlines=first_result.headlines %}"><h1 class="text-center">
+                        {{ first_result.headlines }}
+                    </h1></a>
+                    <div class="text-center">
+                        <a href="{% url 'homepage:category' categorytitle=first_result.main_category %}"
+                            class="btn btn-dark font-weight-bold mb-4">{{ first_result.main_category|upper }}</a>
+                    </div>
+                    <p class="fs-15 d-flex justify-content-center align-items-center m-0">
+                        <img src="{% static 'homepage/images' %}/{{ first_result.author.avatar }}" alt="author-ava"
+                            class="img-xs img-rounded mr-2" />
+                        {{ first_result.author }} | {{ first_result.add_time|date:'M d, Y' }}
+                    </p>
+                    <p class="pt-4 pb-4">
+                        {{ first_result.title }}. {{ first_result.subtitle }}
+                    </p>
+                </div>
+                <a href="{% url 'homepage:read_news' headlines=first_result.headlines %}">
+                    <img src="{% static 'homepage/images' %}/{{ first_result.image }}" width="100%" alt="news" class="img-fluid mb-4" />
+                </a>
+                <div class="news-post-wrapper-sm mt-5">
+                    {% for news in results %}
+                    <div class="border-top py-5">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="position-relative image-hover">
+                                    <a href="{% url 'homepage:read_news' headlines=first_result.headlines %}">
+                                        <img src="{% static 'homepage/images' %}/{{ news.image_square }}" alt="news"
+                                            class="img-fluid" />
+                                    </a>
+                                    <span class="thumb-title">{{ news.main_category|upper }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="position-relative image-hover">
+                                    <a href="{% url 'homepage:read_news' headlines=first_result.headlines %}">
+                                        <h1 class="font-weight-600">
+                                            {{ news.headlines }}
+                                        </h1>
+                                    </a>
+                                    <p class="fs-15">{{ news.author }} | {{ news.add_time }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

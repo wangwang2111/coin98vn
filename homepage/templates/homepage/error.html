@@ -1,0 +1,46 @@
+{% extends 'homepage/layout.html' %}
+{% block title %}Not Found{% endblock %}
+{% block body %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="alert alert-warning" role="alert">{{ message }}</div>
+            {% if suggestion %}
+            <h2>Gợi Ý</h2>
+            <div class="list-group">
+                <button type="button" class="list-group-item list-group-item-action">
+                    Hãy chắn chắn ràng tất cả những từ đều được đánh vần đúng.
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                    Hãy thử các từ khóa khác nhau.
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                    Thử những từ khóa thông thường hơn.
+                </button>
+                <button type="button" class="list-group-item list-group-item-action">
+                    Hãy thử ít từ khóa hơn.
+                </button>
+            </div>
+            {% endif %}
+            <div class="error-wrap">
+                <div class="error-title">
+                    {{code}}
+                </div>
+                <div class="error-sub-title">
+                    Oops! Trang mà bạn tìm kiếm không tồn tại
+                </div>
+                <p>Có thể sử dụng các mục trên thanh điều hướng hoặc tìm kiếm.</p>
+
+                <div class="search-container"  style="border-radius: 10px;">
+                    <form action="{% url 'homepage:search' %}" method="get" class="d-flex">
+                        <input type="text" placeholder="Search" name="r" />
+                        <button type="submit"><i class="mdi mdi-magnify"></i></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}

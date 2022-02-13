@@ -1,0 +1,245 @@
+{% extends 'homepage/layout.html' %}
+{% block title %}Trang Chủ{% endblock %}
+{% block body %}
+{% load static %}
+<meta property="og:image" content="" />
+<meta property="og:title" content="news.titles" />
+<div class="container">
+    <div class="banner-top-thumb-wrap">
+      <div class="d-lg-flex justify-content-between align-items-center">
+        {% for news in four_news %}
+        <div class="d-flex justify-content-between mb-3 mb-lg-0">
+          <div>
+            <img src="{% static 'homepage/images' %}/{{news.image}}" alt="thumb" class="banner-top-thumb" />
+          </div>
+          <a href="read/{{ news.headlines }}"><h5 class="m-0 font-weight-bold">
+            {{ news.headlines|truncatewords:5 }}
+          </h5></a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="owl-carousel owl-theme" id="main-banner-carousel">
+          {% for news in four_news %}
+          <div class="item">
+            <div class="carousel-content-wrapper mb-2">
+              <div class="carousel-image banner-hover">
+                <img src="{% static 'homepage/images' %}/{{ news.image }}" alt=""/>
+                <img class="filter-banner" src="{% static 'homepage/images/filter/banner-filter.jpg' %}" alt="filter banner" />
+              </div>
+              <a href="read/{{ news.headlines }}"><div class="carousel-content">
+                <h1 class="font-weight-bold">
+                  {{ news.headlines }}
+                </h1>
+                <h5 class="font-weight-normal  m-0">
+                  {{ news.subtitle }}
+                </h5>
+                <p class="text-color m-0 pt-2 d-flex align-items-center">
+                  <span class="fs-10 mr-1">{{ news.add_time }}</span>
+                  <i class="mdi mdi-bookmark-outline mr-3"></i>
+                  <span class="fs-10 mr-1">{{ news.views }}</span>
+                  <i class="fa fa-eye" style="font-size: 14px;"></i>
+                </p>
+              </div></a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="col-lg-4">
+        {% for authors in author_news %}
+        <div class="row">
+          {% for news in authors %}
+          <div class="col-sm-6">
+            <div class="py-3 {% if not forloop.parentloop.last %}border-bottom{%endif%}">
+              <div class="d-flex align-items-center pb-2">
+                <img src="{% static 'homepage/images' %}/{{ news.author.avatar }}" class="img-xs img-rounded mr-2" alt="thumb" />
+                <span class="fs-12 text-muted">{{ news.author }}</span>
+              </div>
+              <a href="read/{{ news.headlines }}">
+                <p class="fs-14 m-0 font-weight-medium line-height-sm">
+                {{ news.headlines|truncatewords:15 }}
+                </p>
+              </a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="world-news">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="d-flex position-relative float-left">
+            <h3 class="section-title">Tổng Hợp</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        {% for news in category_news %}
+        <div class="col-lg-3 col-sm-6 grid-margin mb-5 mb-sm-2">
+          <div class="position-relative image-hover">
+            <a href="read/{{ news.headlines }}">
+              <img src="{% static 'homepage/images' %}/{{ news.image_square }}" class="img-fluid" alt="world-news" />
+            </a>
+            <a href="{% url 'homepage:category' categorytitle=news.main_category %}">
+              <span class="thumb-title">{{ news.main_category|upper }}</span>
+            </a>
+          </div>
+          <a href="read/{{ news.headlines }}"><h5 class="font-weight-bold mt-3">
+            {{ news.headlines|truncatechars:52 }}
+          </h5></a>
+          <p class="fs-15 font-weight-normal">
+            {{ news.subtitle|truncatewords:12 }}
+          </p>
+          <a href="read/{{ news.headlines }}" class="font-weight-bold text-dark pt-2">Đọc Bài</a>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="editors-news">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="d-flex position-relative float-left">
+            <h3 class="section-title">Tin Nổi Bật</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-6 mb-5 mb-sm-2">
+          <div class="position-relative image-hover">
+            <a href="read/{{ firsttrendingnews.headlines }}">
+              <img src="{% static 'homepage/images' %}/{{ banner_of_hottest }}" class="img-fluid" alt="world-news" />
+            </a>
+            <a href="{% url 'homepage:category' categorytitle=firsttrendingnews.main_category %}">
+              <span class="thumb-title">{{ firsttrendingnews.main_category|upper }}</span>
+            </a>
+          </div>
+          <a href="read/{{ firsttrendingnews.headlines }}"><h1 class="font-weight-600 mt-3">
+            {{ firsttrendingnews.headlines }}
+          </h1></a>
+          <p class="fs-15 font-weight-normal">
+            {{ firsttrendingnews.subtitle }}
+          </p>
+        </div>
+        <div class="col-lg-6 mb-5 mb-sm-2">
+          <div class="row">
+            {% for news in next2trendingnews %}
+            <div class="col-sm-6  mb-5 mb-sm-2">
+              <div class="position-relative image-hover">
+                <a href="read/{{ news.headlines }}">
+                  <img src="{% static 'homepage/images' %}/{{ news.image }}" class="img-fluid" alt="trending-news" />
+                </a>
+                <a href="{% url 'homepage:category' categorytitle=news.main_category %}">
+                  <span class="thumb-title">{{ news.main_category|upper }}</span>
+                </a>
+              </div></a>
+              <a href="read/{{ news.headlines }}">
+              <h5 class="font-weight-600 mt-3">
+                {{ news.headlines|truncatechars:52 }}
+              </h5></a>
+              <p class="fs-15 font-weight-normal">
+                {{ news.subtitle|truncatewords:14 }}
+              </p>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="row mt-3">
+            {% for news in last2trendingnews %}
+            <div class="col-sm-6 mb-5 mb-sm-2">
+              <div class="position-relative image-hover">
+                <a href="read/{{ news.headlines }}">
+                  <img src="{% static 'homepage/images' %}/{{ news.image }}" class="img-fluid" alt="trending-news" />
+                </a>
+                <a href="{% url 'homepage:category' categorytitle=news.main_category %}">
+                  <span class="thumb-title">{{ news.main_category|upper }}</span>
+                </a>
+              </div>
+              <a href="read/{{ news.headlines }}">
+              <h5 class="font-weight-600 mt-3">
+                {{ news.title|truncatechars:48 }}
+              </h5></a>
+              <p class="fs-15 font-weight-normal">
+                {{ news.subtitle|truncatewords:10 }}
+              </p>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="popular-news">
+      <div class="row">
+        <div class="col-lg-3">
+          <div class="d-flex position-relative float-left">
+            <h3 class="section-title">Khuyên đọc</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-9">
+          {% for row in recommended %}
+          <div class="row {% if forloop.last %}mt-3{% endif %}">
+            {% for news in row %}
+            <div class="col-sm-4 mb-5 mb-sm-2">
+              <div class="position-relative image-hover">
+                <a href="read/{{ news.headlines }}">
+                  <img src="{% static 'homepage/images' %}/{{ news.image_square }}" class="img-fluid" alt="recommended-news" />
+                </a>
+                <a href="{% url 'homepage:category' categorytitle=news.main_category %}">
+                  <span class="thumb-title">{{ news.main_category|upper }}</span>
+                </a>
+              </div>
+              <a href="read/{{ news.headlines }}">
+                <h5 class="font-weight-600 mt-3">
+                  {{ news.headlines }}
+                </h5>
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+          {% endfor %}
+        </div>
+        <div class="col-lg-3">
+          <!-- <div class="position-relative mb-3">
+            <img src="{% static 'homepage/images/dashboard/star-magazine-15.jpg' %}" class="img-fluid" alt="world-news" />
+            <div class="video-thumb text-muted">
+              <span><i class="mdi mdi-menu-right"></i></span>LIVE
+            </div>
+          </div> -->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="d-flex position-relative float-left">
+                <h3 class="section-title">Latest News</h3>
+              </div>
+            </div>
+            {% for news in five_latest %}
+            <div class="col-sm-12">
+              <div class="border-bottom pb-3">
+                <a href="read/{{ news.headlines }}">
+                  <h5 class="font-weight-600 mt-0 mb-0">
+                    {{ news.headlines }}
+                  </h5>
+                </a>
+                <p class="text-color m-0 d-flex align-items-center">
+                  <span class="fs-10 mr-1">
+                    {{ news.add_time|timesince }}
+                  </span>
+                  <i class="mdi mdi-bookmark-outline mr-3"></i>
+                  <span class="fs-10 mr-1">{{ news.cmt_count }}</span>
+                  <a class="mvp-twit-but" href="read/{{ news.headlines }}#cmt-place">
+                    <i class="mdi mdi-comment-outline"></i>
+                  </a>
+                </p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock %}

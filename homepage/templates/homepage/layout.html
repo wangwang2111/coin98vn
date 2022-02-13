@@ -1,0 +1,220 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  
+<head>
+  <!-- Required meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>{% block title %}{% endblock %} | CoinVN</title>
+  <!-- plugin css for this page -->
+  <link rel="stylesheet" href="{% static 'homepage/vendors/mdi/css/materialdesignicons.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'homepage/vendors/aos/dist/aos.css/aos.css' %}"/>
+  <link rel="stylesheet" href="{% static 'homepage/vendors/owl.carousel/dist/assets/owl.carousel.min.css' %}"/>
+  <link rel="stylesheet" href="{% static 'homepage/vendors/owl.carousel/dist/assets/owl.theme.default.min.css' %}"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- End plugin css for this page -->
+  <link rel="shortcut icon" href="{% static 'homepage/images/favicon.png' %}" />
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static 'homepage/css/style.css' %}">
+  <!-- endinject -->
+</head>
+
+<body>
+  <div class="container-scroller">
+    <div class="main-panel">
+      <header id="header">
+        <div class="container">
+          <!-- partial:partials/_navbar.html -->
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="d-flex justify-content-between align-items-center navbar-top">
+              <ul class="navbar-left">
+                <li>{{ current_date }}</li>
+              </ul>
+              <div>
+                <a class="navbar-brand" href="{% url 'homepage:aboutus' %}"><img src="{% static 'homepage/images/logotext1.svg' %}" alt="Logo CoinVN" /></a>
+              </div>
+              <div class="d-flex">
+                <ul class="navbar-right">
+                  <li>{{ current_temp }}</li>
+                </ul>
+                <ul class="social-media">
+                  <li>
+                    <a href="#">
+                      <i class="mdi mdi-instagram"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="mdi mdi-facebook"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="mdi mdi-youtube"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="mdi mdi-twitter"></i>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="navbar-bottom-menu">
+              <button class="navbar-toggler" type="button" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="navbar-collapse justify-content-center collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav d-lg-flex justify-content-between align-items-center">
+                  <li>
+                    <button class="navbar-close">
+                      <i class="mdi mdi-close"></i>
+                    </button>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link active" href="{% url 'homepage:index' %}">Trang Chủ</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homepage:category' categorytitle="Crypto" %}">Cryptocurrency</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homepage:category' categorytitle="Game Defi" %}">Game Defi</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homepage:category' categorytitle="Kiến Thức" %}">Kiến Thức</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homepage:category' categorytitle="Hướng Dẫn" %}">Hướng Dẫn</a>
+                  </li>
+                  <li class="nav-item">
+                    <form action="{% url 'homepage:search' %}" method="get" style="display: flex; justify-content: center;">
+                      <input style="transform: translateY(50%);" class="mr-2 form-control col-lg-10 col-md-8 col-sm-4 form-control-sm" type="text"
+                        placeholder="Search" value="" name="r" maxlength="250"/>
+                      <a class="nav-link" onclick="this.parentNode.submit();"><i id="magnify-icon" class="mdi mdi-magnify"></i></a>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <!-- partial -->
+        </div>
+      </header>
+      <!-- main-panel ends -->
+      <!-- container-scroller ends -->
+      {% block body %}
+      {% endblock %}
+      <!-- partial:partials/_footer.html -->
+      <footer>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="border-top"></div>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <ul class="footer-vertical-nav">
+                <li class="menu-title"><a href="pages/news-post.html" class="text-dark">Tin Tức</a></li>
+                <li><a href="index.html" class="text-dark">Trang Chủ</a></li>
+                <li><a href="pages/world.html" class="text-dark">Binance</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <ul class="footer-vertical-nav">
+                <li class="menu-title"><a href="pages/world.html" class="text-dark">Game Defi</a></li>
+                <li><a href="pages/sports.html" class="text-dark">Sàn Bybit</a></li>
+                <li><a href="pages/art.html" class="text-dark">Kiến Thức</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <ul class="footer-vertical-nav">
+                <li class="menu-title"><a href="#" class="text-dark">Crypto</a></li>
+                <li><a href="#" class="text-dark">Love Token</a></li>
+                <li><a href="#" class="text-dark">Quy tắc quan trọng</a></li>
+              </ul>
+            </div>
+            <div class="col-sm-3 col-lg-3">
+              <ul class="footer-vertical-nav">
+                <li class="menu-title"><a href="#" class="text-dark">Hướng Dẫn</a></li>
+                <li><a href="#" class="text-dark">Về Chúng Tôi</a></li>
+                <li><a href="#" class="text-dark">Liên Hệ</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="d-flex justify-content-between">
+                <div class="col-6">
+                  <img src="{% static 'homepage/images/favicon.png' %}" class="logo-img" alt="logo" />
+                  <img src="{% static 'homepage/images/logotext.svg' %}" class="footer-logo" alt="logo" />
+                </div>
+                <div class="d-flex justify-content-end footer-social">
+                  <h5 class="m-0 font-weight-600 mr-3 d-none d-lg-flex">Follow us on</h5>
+                  <ul class="social-media">
+                    <li>
+                      <a href="#">
+                        <i class="mdi mdi-instagram"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="mdi mdi-facebook"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="mdi mdi-youtube"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <i class="mdi mdi-twitter"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="d-lg-flex justify-content-between align-items-center border-top mt-5 footer-bottom">
+                <ul class="footer-horizontal-menu">
+                  <li><a href="{% url 'homepage:aboutus' %}" class="text-dark">About Us</a></li>
+                  <li><a href="#" class="text-dark">Contact Us</a></li>
+                </ul>
+                <p class="font-weight-medium">
+                  © 2022 @ Coin98 VN,
+                  Inc.All Rights Reserved.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+
+      <!-- partial -->
+    </div>
+  </div>
+  <!-- inject:js -->
+  <script src="{% static 'homepage/vendors/js/vendor.bundle.base.js' %}"></script>
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <script src="{% static 'homepage/vendors/owl.carousel/dist/owl.carousel.min.js' %}"></script>
+  <!-- End plugin js for this page -->
+  <!-- Custom js for this page-->
+  {% block script %}{% endblock %}
+  <script src="{% static 'homepage/js/slider.js' %}"></script>
+  <script src="{% static 'homepage/js/demo.js' %}"></script>
+  <!-- End custom js for this page-->
+  <script src="{% static 'homepage/js/jquery.ticker.js' %}"></script>
+  <script src="{% static 'homepage/js/site.js' %}"></script>
+
+</body>
+
+</html>

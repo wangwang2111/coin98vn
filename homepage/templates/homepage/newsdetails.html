@@ -1,0 +1,395 @@
+{% extends 'homepage/layout.html' %}
+{% block title %}{{ news.headlines }}{% endblock %}
+{% block body %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/sidebar.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'homepage/css/ticker-style.css' %}" />
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xl-9 .col-md-8">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="trending-tittle">
+                        <strong>Trending</strong>
+                        <!-- <p>Rem ipsum dolor sit amet, consectetur adipisicing elit.</p> -->
+                        <div class="trending-animated">
+                            <ul id="js-news" class="js-hidden">
+                                {% for tnews in trendingnews %}
+                                <li class="news-item">{{ tnews.title }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h1 class="section-title title">Your News</h1>
+            <div class="dynamicDiv" id="dd.0.1.0">
+                <article data-item-id="1190">
+                    <h1>{{ news.title }}</h1>
+                    <div class="details-hover" style="width: 100%">
+                        <img alt="{{ news.headlines }}" width="100%"
+                            src="{% static 'homepage/images/' %}{{ news.image }}">
+                    </div>
+                    <div class="heading">
+                        <div class="mvp-author-info-wrap left relative">
+                            <div class="mvp-author-info-thumb left relative">
+                                <img alt="{{ author.name }}" height='46' width='46'
+                                    class="mt-2 img-fluid rounded-circle"
+                                    src="{% static 'homepage/images/' %}{{ author.avatar }}">
+                            </div>
+                            <div class="mvp-author-info-text left relative">
+                                <div class="mvp-author-info-date left relative">
+                                    <p>Published</p>
+                                    <span class="mvp-post-date">
+                                        {{ news.add_time|timesince }} ago
+                                    </span>
+                                    <p>on</p>
+                                    <span class="mvp-post-date updated">
+                                        <time class="post-date updated" itemprop="datePublished"
+                                            datetime="{{ news.add_time }}">{{ news.add_time }}</time>
+                                    </span>
+
+                                    <meta itemprop="dateModified" content="{{ news.add_date }}" />
+                                </div>
+                                <!--mvp-author-info-date-->
+                                <div class="mvp-author-info-name left relative" itemprop="author" itemscope
+                                    itemtype="https://schema.org/Person">
+                                    <p>By</p>
+                                    <span class="author-name vcard fn author" itemprop="name">
+                                        <a href="#" title="Posts by {{ author.name }}" rel="author">{{ author.name }}</a>
+                                    </span>
+                                    <a class="mvp-twit-but" target="_blank">
+                                        <span class="mvp-author-info-twit-but like-cmt"><i class="fa fa-eye"
+                                                style="color: #000;"></i>
+                                            <p> {{ news.views }} </p>
+                                        </span>
+                                    </a>
+                                    <!-- <a class="mvp-twit-but" href="#">
+                                                <span class="mvp-author-info-twit-but"><i class="fa fa-heart-o"></i></span>
+                                            </a> -->
+                                    <!-- <p class="like-cmt">  </p> -->
+                                    <a class="mvp-twit-but" href="#cmt-place">
+                                        <span class="mvp-author-info-twit-but"><i
+                                                class="mdi mdi-comment-outline"></i></span>
+                                    </a>
+                                    <p class="like-cmt"> {{ news.cmt_count }} </p>
+                                </div>
+                                <!--mvp-author-info-name-->
+                            </div>
+                            <!--mvp-author-info-text-->
+                        </div>
+                    </div>
+                    <!-- <div class="fixed-share"> -->
+                    <a aria-label="Share Blog Post on Facebook" class="share-btn h-xs-35p w-xs-35p text-decoration-none"
+                        href="https://www.facebook.com/share.php?u={{ request.build_absolute_uri }}" target="_blank"
+                        aria-label="Share on Facebook" style="top: 27rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-facebook" viewBox="0 0 16 16">
+                            <path
+                                d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                        </svg>
+                    </a>
+                    <a class="share-btn h-xs-35p w-xs-35p text-decoration-none"
+                        href="https://www.twitter.com/intent/tweet?text=How to Feature News or Blog Posts Using Bootstrap's Grid System&url=https://www.solodev.com/blog/web-design/how-to-feature-news-or-blog-posts-using-bootstraps-grid-system.stml"
+                        target="_blank" aria-label="Share on Twitter" style="top: 29rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-twitter" viewBox="0 0 16 16">
+                            <path
+                                d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                        </svg>
+                    </a>
+                    <a class="share-btn h-xs-35p w-xs-35p text-decoration-none"
+                        href="mailto:?subject=Link%20on%20solodev.com/blog&amp;body=https://www.solodev.com/blog/web-design/how-to-feature-news-or-blog-posts-using-bootstraps-grid-system.stml"
+                        aria-label="Email" style="top: 31rem;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                            class="bi bi-envelope" viewBox="0 0 16 16">
+                            <path
+                                d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+                        </svg>
+                    </a>
+
+                    <!-- </div> -->
+                    <div class="mb-5">
+                        {{ content|safe }}
+                        <div class="zox-post-tags left zoxrel zox100 mt-5">
+                            <span class="zox-post-tags-header">Tag: </span>
+                            <span itemprop="keywords">
+                                {% for tag in news_tags %}
+                                <a href="{% url 'homepage:tag_news' tagtitle=tag %}" rel="tag">{{ tag|capfirst }}</a>
+                                {% if not forloop.last %}, {% endif %}
+                                {% endfor %}
+                            </span>
+                        </div>
+                    </div>
+                    <br>
+                    <hr>
+                </article>
+                <article class="share mt-4">
+                    <div class="social text-right">
+                        <a href="https://www.facebook.com/share.php?u={{ request.build_absolute_uri }}"
+                            target="_blank" class="btn" id="btn-share-fb">
+                            Share on Facebook
+                        </a>
+                        <a href="#"
+                            target="_blank" class="btn" id="btn-share-tw">
+                            Tweet It
+                        </a>
+                    </div>
+                </article>
+                <article class="author mt-4 position-relative">
+                    <div class="row">
+                        <div class="col-2 mx-auto">
+                            <div class="valign-middle">
+                                <img alt="{{ author.name }}" class="img-fluid rounded-circle"
+                                    src="{% static 'homepage/images/' %}{{ author.avatar }}">
+                            </div>
+                        </div>
+                        <div class="col-8 mx-auto mb-4">
+                            <p class="margin-0"><span class="font-weight-bold">{{ author.name }}</span>
+                                <br>
+                            <p class="author-script fs-8" style="color: #959595; font-weight: 500;">Tác giả của nhiều
+                                bài viết tại website này. Góp ý, bổ sung, nói về chủ đề bài viết,
+                                liên hệ</p>
+                            <!-- <a href="https://www.facebook.com/dangquang211102/" target="_blank"
+                                            class="link-info text-underline fs-8" style="color: #959595;font-weight: 400;">
+                                            Follow me on Facebook 
+                                        </a> -->
+                            <p>
+                                <a class="fa fa-facebook aufa" href="https://www.facebook.com/MaiHienChuan"
+                                    target="_blank"></a>
+                                <a class="fa fa-twitter aufa" href="#" target="_blank"></a>
+                                <a class="fa fa-instagram aufa" href="" target="_blank"></a>
+                            </p>
+                            </p>
+                        </div>
+                    </div>
+                </article>
+                <a id="cmt-place"></a>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="comments-wrapper">
+                            <h1 class="section-title title">Comments</h1>
+                            <ul class="media-list">
+                                {% for comment in comments %}
+                                {% if comment.status %}
+                                <li class="media {% if forloop.last and not forloop.first %}media-child{% endif %}">
+                                    <div class="media-left">
+                                        {% if comment.avatar %}
+                                        <img class="media-object"
+                                            src="{% static 'homepage/images/' %}{{ comment.avatar }}"
+                                            alt="Comment Avatar">
+                                        {% else %}
+                                        <img class="media-object"
+                                            src="{% static 'homepage/images/author/coin98vn.png' %}"
+                                            alt="Comment Avatar">
+                                        {% endif %}
+                                    </div>
+                                    <div class="media-body">
+                                        <h2>{{ comment.name }}</h2>
+                                        <h3 class="date"><a href="#">{{ comment.day_time }}</a></h3>
+                                        <p>{{ comment.comment }}</p>
+                                        <a class="replay" href="#">Replay</a>
+                                    </div>
+                                </li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <div class="comments-box">
+                                <h1 class="section-title title">Leave a Comment</h1>
+                                <form id="comment-form" action="{{ news.headlines }}" method="post" name="comment-form"
+                                    enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Tên *</label>
+                                                <input type="text" name="name" class="form-control" required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Email *</label>
+                                                <input type="email" name="email" class="form-control"
+                                                    required="required">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label>Chủ Đề</label>
+                                                <input type="text" name="subject" class="form-control">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <label>Nội Dung Bình Luận *</label>
+                                                <textarea name="message" id="comment" required="required"
+                                                    class="form-control" rows="5"></textarea>
+                                            </div>
+                                            <label>Đăng Hình Đại Diện:</label>
+                                            <input type="file" name="user_ava">
+                                            <div class="text-center">
+                                                <button type="submit" class="btn btn-danger">Send </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <h1 class="section-title title">Related News</h1>
+                <div class="image-slider">
+                    {% for news in related_news %}
+                    <div class="image-item">
+                        <div class="image position-relative image-hover">
+                            <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+                                <img src="{% static 'homepage/images' %}/{{ news.image_square }}" class="img-fluid"
+                                    alt="world-news" />
+                            </a>
+                            <a href="{% url 'homepage:category' categorytitle=news.main_category %}">
+                                <span class="thumb-title">{{ news.main_category|upper }}</span>
+                            </a>
+                        </div>
+                        <h5 class="font-weight-bold mt-3">
+                            <div class="hover-line">
+                            <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+                                {{ news.headlines|truncatechars:69 }}
+                            </a></div>
+                        </h5>
+                        <p class="fs-15 font-weight-normal">
+                            {{ news.subtitle|truncatechars:46 }}
+                        </p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 axil-sidebar">
+            <aside class="axil-main-sidebar">
+                <div id="axil-tabbed-recent-widget-2" class="widget tabbed widgets-sidebar">
+                    <div class="post-widget sidebar-post-widget m-b-xs-30">
+                        <ul class="nav nav-pills row no-gutters">
+                            <li class="nav-item col"> <a class="nav-link active" href="#recent-post-1"
+                                    data-toggle="pill">Gần Đây</a></li>
+                            <li class="nav-item col"> <a class="nav-link " href="#recent-post-2"
+                                    data-toggle="pill">Nổi Tiếng</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade active show" id="recent-post-1">
+                                <div class="content">
+                                    {% for news in recent_news %}
+                                        <div class="media post-block post-block__small">
+                                            <div class="media-body">
+                                                <div class="post-cat-group">
+                                                    <a class="post-cat" href="https://axilthemes.com/themes/papr/category/carona/tips/">
+                                                        <span class="el-rt-cat style_2">Tips<span
+                                                                class="titleinner"></span></span></a>
+                                                </div>
+                                                <h5 class="axil-post-title hover-line font-weight-bold">
+                                                    <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+                                                        {{ news.headlines }}
+                                                    </a>
+                                                </h5>
+                                                <div class="post-metas">
+                                                    <ul class="list-inline">
+                                                        <li>By &nbsp;
+                                                            <a href="" title="Posts by {{ news.author }}" rel="author">{{ news.author }}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <a href="{% url 'homepage:read_news' headlines=news.headlines %}" class="align-self-center">
+                                                <img width="115" height="115"
+                                                    src="{% static 'homepage/images' %}/{{ news.image_square }}"
+                                                    data-sizes="(max-width: 115px) 100vw, 115px" />
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            <div class="tab-pane fade " id="recent-post-2">
+                                <div class="content">
+                                    {% for news in popular_news %}
+                                        <div class="media post-block post-block__small">
+                                            <div class="media-body">
+                                                <div class="post-cat-group">
+                                                    <a class="post-cat" href="https://axilthemes.com/themes/papr/category/carona/tips/">
+                                                        <span class="el-rt-cat style_2">Tips<span
+                                                                class="titleinner"></span></span></a>
+                                                </div>
+                                                <h5 class="axil-post-title hover-line font-weight-bold">
+                                                    <a href="{% url 'homepage:read_news' headlines=news.headlines %}">
+                                                        {{ news.headlines }}
+                                                    </a>
+                                                </h5>
+                                                <div class="post-metas">
+                                                    <ul class="list-inline">
+                                                        <li>By &nbsp;
+                                                            <a href="" title="Posts by {{ news.author }}" rel="author">{{ news.author }}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <a href="{% url 'homepage:read_news' headlines=news.headlines %}" class="align-self-center">
+                                                <img width="115" height="115"
+                                                    src="{% static 'homepage/images' %}/{{ news.image_square }}"
+                                                    data-sizes="(max-width: 115px) 100vw, 115px" />
+                                            </a>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tag_cloud-1" class="widget widget_tag_cloud widgets-sidebar">
+                    <div>
+                        <h4 class="section-title title">Tags</h4>
+                    </div>
+                    <div class="tagcloud">
+                        {% for tag in tags %}
+                            <a href="{% url 'homepage:tag_news' tagtitle=tag.title %}"
+                                class="tag-cloud-link tag-link-40 tag-link-position-1" aria-label="{{ tag.title }}">
+                                {{ tag.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+
+<script>
+    window.addEventListener('scroll', () => {
+        sharebtns = document.querySelectorAll('.share-btn')
+        const scrolled = window.scrollY;
+
+        if (scrolled >= 859) {
+            for (let i = 0; i < sharebtns.length; i++) {
+                sharebtns[i].classList.add('fade');
+            }
+        }
+        else {
+            for (let i = 0; i < sharebtns.length; i++) {
+                sharebtns[i].classList.remove('fade');
+            }
+        }
+    })
+
+</script>
+{% if message %}
+<script>
+    alert("The server says: Bình luận đã được gửi đi, trong quá trình cần kiểm duyệt");
+</script>
+{% endif %}
+{% endblock %}
+{% block script %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+{% endblock %}
