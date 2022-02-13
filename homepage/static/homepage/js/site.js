@@ -31,6 +31,6 @@ function loading_animation() {
 
 		main.style.display = 'block';
 		setTimeout(() => (main.style.opacity = 1), 50);
-	}, 2750);
+	}, 1500);
 }
 loading_animation();
