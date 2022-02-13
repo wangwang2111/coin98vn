@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .models import *
 from datetime import date, datetime
+from random import randint
 import requests
 
 def get_by_headlines(hl):
@@ -197,7 +198,10 @@ def read_news(request, headlines):
     # Popular
     popular_news = News.objects.all().order_by('-views')[:4]
     # Tags
-    tags = Tag.objects.annotate(news_count=Count('newsTag')).order_by('-news_count')[:11]
+    if randint(0,1) == 0:
+        tags = Tag.objects.annotate(news_count=Count('newsTag')).order_by('-news_count')[:11]
+    else:
+        tags = Tag.objects.annotate(news_count=Count('newsTag')).order_by('news_count')[:12]
     news.views += 1
     news.save()
     return render(request, 'homepage/newsdetails.html', {
